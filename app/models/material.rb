@@ -1,5 +1,5 @@
 class Material < ApplicationRecord
-  has_many :quantities
+  has_many :quantities, dependent: :destroy
 
   validates :name, uniqueness: true
   validate :check_material_log, on: :destroy
