@@ -2,14 +2,14 @@ class Quantity < ApplicationRecord
   belongs_to :material, foreign_key: :material_id, class_name: 'Material'
 
   validate :check_negative_balance
-  validate :check_working_time
+  # validate :check_working_time
 
   after_save :create_material_log
 
   def create_material_log
     unless self.amount == 0 && self == self.material.quantities.order(id: :asc).first
       Log.create(
-        user_email: session[:user_email],
+        user_email: self.user_email,
         material_name: self.material.name,
         quantity_delta: self.amount
       )
