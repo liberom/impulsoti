@@ -1,0 +1,5 @@
+<h1> Logs </h1>
+
+<% @logs.each do |log| %>
+  <p> <%= "id: #{log.id}; user: #{log.user_email}; material: #{log.material_name}; quantity: #{log.quantity_delta}" %> </p>
+<% end %>
