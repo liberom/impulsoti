@@ -12,11 +12,28 @@
   <tbody>
     <% @materials.each do |material| %>
       <tr>
-        <td><%= material.name %></td>
-        <td><%= material.quantity %></td>
-        <td><%= link_to 'Exibir', material %></td>
+        <td>
+          <%= link_to material do %>
+            <%= material.name %>
+          <% end %>
+        </td>
+        <td><%= material.sum_quantity %></td>
+        <td>
+          <%= simple_form_for(@quantity) do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+            <div class="form-inputs">
+              <%= f.hidden_field :material_id, value: material.id %>
+              <%= f.input :amount, label: "Qtd:" %>
+            </div>
+
+            <div class="form-actions">
+              <%= f.submit "Salvar", class: "btn btn-success" %>
+            </div>
+          <% end %>
+        </td>
         <td><%= link_to 'Editar', edit_material_path(material) %></td>
-        <td><%= link_to 'Apagar', material, method: :delete, data: { confirm: 'Tem certeza?' } %></td>
       </tr>
     <% end %>
   </tbody>

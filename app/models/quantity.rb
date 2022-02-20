@@ -9,7 +9,7 @@ class Quantity < ApplicationRecord
   def create_material_log
     unless self.amount == 0 && self == self.material.quantities.order(id: :asc).first
       Log.create(
-        user_email: ApplicationController.logged_user_email,
+        user_email: session[:user_email],
         material_name: self.material.name,
         quantity_delta: self.amount
       )

@@ -4,6 +4,7 @@ class MaterialsController < ApplicationController
   # GET /materials or /materials.json
   def index
     @materials = Material.all
+    @quantity = Quantity.new
   end
 
   # GET /materials/1 or /materials/1.json
@@ -65,6 +66,6 @@ class MaterialsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def material_params
-      params.require(:material).permit(:name, :quantity)
+      params.require(:material).permit(:name)
     end
 end

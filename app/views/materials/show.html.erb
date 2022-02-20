@@ -5,8 +5,14 @@
 
 <p>
   <strong>Quantidade:</strong>
-  <%= @material.quantity %>
+  <%= @material.sum_quantity %>
 </p>
 
+<p><strong>Entradas e Retiradas:</strong></p>
+<% @material.quantities.each do |quantity| %>
+  <p> <%= quantity.amount %> </p>
+<% end %>
+
 <%= link_to 'Editar', edit_material_path(@material) %> |
-<%= link_to 'Voltar', materials_path %>
+<%= link_to 'Voltar', materials_path %> |
+<%= link_to 'Apagar', @material, method: :delete, data: { confirm: 'Tem certeza?' } %>

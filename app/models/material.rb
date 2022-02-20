@@ -14,4 +14,9 @@ class Material < ApplicationRecord
     Quantity.create(material_id: self.id, amount: 0)
   end
 
+  def sum_quantity
+    self.quantities.pluck(:amount).sum
+  end
+
+
 end

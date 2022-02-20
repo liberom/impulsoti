@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :quantities, only: [:create]
   resources :materials
   devise_for :users, except: [:destroy]
   root to: 'materials#index'
