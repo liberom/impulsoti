@@ -3,4 +3,8 @@ class PagesController < ApplicationController
 
   def home
   end
+
+  def logs
+    @logs = Log.all
+  end
 end
