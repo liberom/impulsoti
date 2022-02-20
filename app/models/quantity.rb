@@ -17,7 +17,7 @@ class Quantity < ApplicationRecord
   end
 
   def check_negative_balance
-    errors.add(:amount, "Quantidade total nao pode ser negativa") if self.material.quantities.pluck(:amount).sum < 0
+    errors.add(:amount, "Quantidade total nao pode ser negativa") if self.material.sum_quantity < 0
   end
 
   def check_working_time
