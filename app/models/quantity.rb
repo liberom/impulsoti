@@ -2,7 +2,7 @@ class Quantity < ApplicationRecord
   belongs_to :material, foreign_key: :material_id, class_name: 'Material'
 
   validate :check_negative_balance
-  # validate :check_working_time
+  validate :check_working_time
 
   after_save :create_material_log
 
