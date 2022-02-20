@@ -5,3 +5,7 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+materials = ['corda', 'vassoura', 'pilha', 'cola', 'desinfetante', 'detergente']
+materials.each do |material|
+  Material.create(name: material)
+end
