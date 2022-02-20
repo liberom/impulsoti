@@ -5,35 +5,32 @@
     <tr>
       <th>Nome</th>
       <th>Quantidade</th>
-      <th colspan="3"></th>
+      <th colspan="2" class="text-center">Entrada/Retirada</th>
     </tr>
   </thead>
 
   <tbody>
     <% @materials.each do |material| %>
-      <tr>
+      <tr class="text-right">
         <td>
           <%= link_to material do %>
             <%= material.name %>
           <% end %>
         </td>
         <td><%= material.sum_quantity %></td>
-        <td>
-          <%= simple_form_for(@quantity) do |f| %>
-            <%= f.error_notification %>
-            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+        <%= simple_form_for @quantity do |f| %>
+        <td >
+          <%= f.error_notification %>
+          <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
-            <div class="form-inputs">
-              <%= f.hidden_field :material_id, value: material.id %>
-              <%= f.input :amount, label: "Qtd:" %>
-            </div>
-
-            <div class="form-actions">
-              <%= f.submit "Salvar", class: "btn btn-success" %>
-            </div>
-          <% end %>
+          <%= f.hidden_field :material_id, value: material.id %>
+          <%= f.hidden_field :user_email, value: current_user.email %>
+          <%= f.input :amount, label: false, class: 'text-right', input_html: { size: 5, maxlength: 5, style: 'width: 150px' } %>
         </td>
-        <td><%= link_to 'Editar', edit_material_path(material) %></td>
+        <td class="text-left">
+          <%= f.submit "Salvar", class: "btn btn-success" %>
+        </td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>

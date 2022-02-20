@@ -10,7 +10,9 @@
 
 <p><strong>Entradas e Retiradas:</strong></p>
 <% @material.quantities.each do |quantity| %>
-  <p> <%= quantity.amount %> </p>
+  <% unless quantity.amount == 0 %>
+    <p> <%= quantity.amount %> </p>
+  <% end %>
 <% end %>
 
 <%= link_to 'Editar', edit_material_path(@material) %> |
