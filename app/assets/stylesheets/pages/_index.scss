@@ -1,2 +1,13 @@
 // Import page-specific CSS files here.
 @import "home";
+
+// Forms
+div .mb-3 .integer .optional .quantity_amount {
+  text-align: right;
+}
+
+.simple_form {
+  position: auto;
+  float: none;
+  text-align : center;
+}
