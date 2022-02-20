@@ -1,13 +1,15 @@
 class QuantitiesController < ApplicationController
   def create
-    session[:user_email] = current_user.email
     @quantity = Quantity.new(quantity_params)
     @material = Material.find(quantity_params[:material_id])
 
     @quantity.material = @material
-    @quantity.save
+    if @quantity.save
+      redirect_to materials_path
+    else
+      redirect_to materials_path, alert: "erro: #{@quantity.errors.first.type}"
+    end
 
-    redirect_to materials_path
   end
 
   private
