@@ -7,13 +7,13 @@ class QuantitiesController < ApplicationController
     @quantity.material = @material
     @quantity.save
 
-    render materials_path
+    redirect_to materials_path
   end
 
   private
 
   def quantity_params
-    params.require(:quantity).permit(:material_id, :amount)
+    params.require(:quantity).permit(:material_id, :user_email, :amount)
   end
 
 
